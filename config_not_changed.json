@@ -1,0 +1,15 @@
+{
+  "mail": {
+    "from": "INPUT_YOUR_EMAIL_ADDRESS",
+    "to": [
+      "INPUT_RECEIVER_EMIL_ADDRESS"
+    ],
+    "username": "INPUT_YOUR_USER_NAME",
+    "password": "INPUT_YOUR_GMAIL_PASSWORD"
+  },
+  "github": {
+    "owner": "INPUT_OWNER",
+    "repository": "INPUT_YOUR_REPOSITORY"
+  },
+  "alarmTime": ["19:00", "22:00", "23:00"]
+}
