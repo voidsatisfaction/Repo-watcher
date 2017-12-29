@@ -1,15 +1,14 @@
 package main
 
 import (
+	"Repo-watcher/src/pkg/github"
+	"Repo-watcher/src/pkg/mail"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"time"
-
-	"github.com/voidsatisfaction/Repo-watcher/src/pkg/github"
-	"github.com/voidsatisfaction/Repo-watcher/src/pkg/mail"
 )
 
 func appInit() {
@@ -100,8 +99,9 @@ func isTime(c *Config, t string) bool {
 }
 
 func main() {
-	c := getConfig()
+	fmt.Println("worked")
 	for {
+		c := getConfig()
 		if isTime(c, getCurrentJapanTime()) {
 			appInit()
 		}
