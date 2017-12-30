@@ -4,13 +4,13 @@
 - Alarm time is configuable.
 - Use gmail smtp server(own gmail account)
 
-Informed e-mail is like this.
+Informed e-mail is like this:
 
 ![Usage Image](./images/example.png)
 
 ## Purpose
 
-My main purpose to make this repository is for reviewing my github repository. I have individual study diary which is about "every day learning" of myself on Github.
+My main purpose to make this repository is for reviewing my github repository. I have an individual study diary which is about "every day learning about conputer science" on Github.
 
 I just realized that writing down my learning on github is really helpful way to memorize my knowledge, but I also thought I wish I have some kinds of reviewing tools for my written material.
 
@@ -22,7 +22,7 @@ Not only my own purpose, Others also can customize or make use of this system as
 
 ### 1. change config_not_changed.json
 
-At first, you can see below.
+At first, you can see below:
 
 ```json
 {
@@ -45,7 +45,7 @@ At first, you can see below.
 
 Please change file name from `config_not_changed.json` to `config.json`
 
-and configure the content as you wish.
+and configure the content as you wish. Such as:
 
 ```json
 {
@@ -82,3 +82,10 @@ change working directory to `Repo-watcher/src/`
 6. if there is `worked` sign, then it is actually working!
 
 After register docker container, you can freely change `alarmTime` on `config.json` no matter where, at both local and container. Because, these two folder is connected with `-v` option when we run the image.
+
+## TODO
+
+- [ ] Refactor More readable code
+- [ ] Enable customize github owner and repository
+- [ ] Add Weekly alarm time
+- [ ] Email template
