@@ -9,5 +9,4 @@ RUN apt-get update && \
 ADD . /go/src/Repo-watcher
 WORKDIR /go/src/Repo-watcher/src
 
-# For dev hotloading
 CMD go run main.go

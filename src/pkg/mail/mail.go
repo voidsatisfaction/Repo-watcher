@@ -1,6 +1,9 @@
 package mail
 
-import "net/smtp"
+import (
+	"fmt"
+	"net/smtp"
+)
 
 type Mail struct {
 	From     string
@@ -28,6 +31,7 @@ func GmailSend(m *Mail) error {
 
 	err := smtp.SendMail(smtpSvr, auth, m.From, []string{m.To}, []byte(m.body()))
 	if err != nil {
+		fmt.Printf("gmail error: %+v\n", err)
 		return err
 	}
 
