@@ -1,12 +1,22 @@
 # Repo watcher
 
+- Regular alarm of updating certain github repository.
+- Alarm time is configuable.
+- Use gmail smtp server(own gmail account)
+
+Informed e-mail is like this.
+
+![Usage Image](./images/example.png)
+
 ## Purpose
 
-My main purpose to make this repository is for reviewing my certail github repository. I have individual study diary which is about "every day learning" of myself.
+My main purpose to make this repository is for reviewing my github repository. I have individual study diary which is about "every day learning" of myself on Github.
 
-I just realized that writing down my learning on github is really powerful way to memorize my knowledge, but I also thought I wish I have some kinds of reviewing tools for my system.
+I just realized that writing down my learning on github is really helpful way to memorize my knowledge, but I also thought I wish I have some kinds of reviewing tools for my written material.
 
-Therefore I decided to make this application.
+Therefore I made this application.
+
+Not only my own purpose, Others also can customize or make use of this system as you wish.
 
 ## Usage
 
