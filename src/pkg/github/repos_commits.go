@@ -8,14 +8,14 @@ import (
 )
 
 type Params struct {
-	owners string
-	repos  string
+	owner string
+	repos string
 }
 
-func NewParams(owners, repos string) *Params {
+func NewParams(owner, repos string) *Params {
 	return &Params{
-		owners: owners,
-		repos:  repos,
+		owner: owner,
+		repos: repos,
 	}
 }
 
@@ -39,8 +39,8 @@ type RepositoryCommit struct {
 	CommentsURL string `json:"comments_url,omitempty"`
 }
 
-func ListCommits(owners, repos string, opt *ListCommitsOptions) (*RepositoryCommits, error) {
-	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/commits", owners, repos)
+func ListCommits(owner, repos string, opt *ListCommitsOptions) (*RepositoryCommits, error) {
+	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/commits", owner, repos)
 
 	if opt.since != "" {
 		url = url + "?since=" + opt.since

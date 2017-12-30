@@ -1,28 +1,29 @@
 package main
 
 import (
+	"Repo-watcher/src/pkg/config"
 	"Repo-watcher/src/pkg/github"
-	"Repo-watcher/src/pkg/mail"
-	"encoding/json"
+	"Repo-watcher/src/pkg/mailer"
+	"Repo-watcher/src/pkg/timer"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
 	"time"
 )
 
-func appInit() {
-	c := getConfig()
-	owners := "voidsatisfaction"
-	repos := "TIL"
+// Seperate Timer, Mailer, Watcher, TemplateEngine
+func appInit(c *config.Config) {
+	owner := c.Github.Owner
+	repos := c.Github.Repository
+	// TODO: Watcher
 	threeDaysAgo := time.Now().Add(-72 * time.Hour).Format("2006-01-02")
 	option := github.NewListCommitsOptions(threeDaysAgo)
-	commits, err := github.ListCommits(owners, repos, option)
+	commits, err := github.ListCommits(owner, repos, option)
 	if err != nil {
 		fmt.Printf("%+v\n", err)
 		return
 	}
 
+	// TODO: Mailer
 	msg := ""
 	for i, commit := range *commits {
 		if i == 0 {
@@ -33,7 +34,7 @@ func appInit() {
 	}
 
 	fmt.Println(msg)
-	m := &mail.Mail{
+	m := &mailer.Mail{
 		From:     c.Mail.From,
 		Username: c.Mail.Username,
 		Password: c.Mail.Password,
@@ -42,68 +43,18 @@ func appInit() {
 		Msg:      msg,
 	}
 
-	if err := mail.GmailSend(m); err != nil {
+	if err := mailer.GmailSend(m); err != nil {
 		log.Println(err)
 	}
 }
 
-func getCurrentJapanTime() string {
-	// Time setting
-	now := time.Now()
-	nowUTC := now.UTC()
-	jst := time.FixedZone("Asia/Tokyo", 9*60*60)
-
-	nowJST := nowUTC.In(jst)
-	hour, min, _ := nowJST.Clock()
-	hourMin := ""
-	if min < 10 {
-		hourMin = fmt.Sprintf("%d:0%d", hour, min)
-	} else {
-		hourMin = fmt.Sprintf("%d:%d", hour, min)
-	}
-	return hourMin
-}
-
-type Config struct {
-	Mail struct {
-		From     string   `json:"from"`
-		To       []string `json:"to"`
-		Username string   `json:"username"`
-		Password string   `json:"password"`
-	} `json:"mail"`
-	Github struct {
-		Owner      string `json:"owner"`
-		Repository string `json:"repository"`
-	} `json:"github"`
-	AlarmTime []string `json:"alarmTime"`
-}
-
-func getConfig() *Config {
-	file, err := ioutil.ReadFile("../config.json")
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
-	c := &Config{}
-	json.Unmarshal(file, c)
-	return c
-}
-
-func isTime(c *Config, t string) bool {
-	for _, time := range c.AlarmTime {
-		if time == t {
-			return true
-		}
-	}
-	return false
-}
-
 func main() {
 	fmt.Println("worked")
+	// TODO: Timer
 	for {
-		c := getConfig()
-		if isTime(c, getCurrentJapanTime()) {
-			appInit()
+		c := config.GetConfig()
+		if timer.IsTime(c, timer.GetCurrentJapanHourMin()) {
+			appInit(c)
 		}
 		time.Sleep(1 * time.Minute)
 	}
