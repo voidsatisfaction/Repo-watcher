@@ -55,10 +55,11 @@ and configure the content as you wish. Such as:
       "target_mail_account@example.com"
     ],
     "username": "your_gmail@gmail.com",
-    "password": "gmail_password",
+    "password": "your_gmail_password",
   },
   "github": {
-    // currently not used
+    "owner": "voidsatisfaction",
+    "repository": "TIL"
   },
   "alarmTime": ["19:00", "22:55", "1:02", "0:00"]
 }
@@ -85,7 +86,9 @@ After register docker container, you can freely change `alarmTime` on `config.js
 
 ## TODO
 
+- [ ] Add Unit Test
 - [ ] Refactor More readable code
+- [ ] Seperate Timer, Mailer, Watcher, Template
 - [ ] Enable customize github owner and repository
 - [ ] Add Weekly alarm time
 - [ ] Email template
