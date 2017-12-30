@@ -15,8 +15,8 @@ func appInit() {
 	c := getConfig()
 	owners := "voidsatisfaction"
 	repos := "TIL"
-	twoDaysAgo := time.Now().Add(-48 * time.Hour).Format("2006-01-02")
-	option := github.NewListCommitsOptions(twoDaysAgo)
+	threeDaysAgo := time.Now().Add(-72 * time.Hour).Format("2006-01-02")
+	option := github.NewListCommitsOptions(threeDaysAgo)
 	commits, err := github.ListCommits(owners, repos, option)
 	if err != nil {
 		fmt.Printf("%+v\n", err)
