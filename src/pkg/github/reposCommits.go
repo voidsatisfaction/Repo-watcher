@@ -1,6 +1,7 @@
 package github
 
 import (
+	"Repo-watcher/src/pkg/config"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -39,17 +40,17 @@ type RepositoryCommit struct {
 	CommentsURL string `json:"comments_url,omitempty"`
 }
 
-func ListCommits(owner, repos string, opt *ListCommitsOptions) (*RepositoryCommits, error) {
-	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/commits", owner, repos)
-
-	if opt.since != "" {
-		url = url + "?since=" + opt.since
+func ListCommits(c *config.ConfigFile, opt *ListCommitsOptions) (*RepositoryCommits, error) {
+	owner, repos, since := c.Github.Owner, c.Github.Repository, opt.since
+	url, err := createGithubRepositoryCommitsApiURL(owner, repos, since)
+	if err != nil {
+		return nil, err
 	}
 	fmt.Println(url)
 
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", url, nil)
+	req, err := http.NewRequest("GET", url.String(), nil)
 	if err != nil {
 		return nil, err
 	}
