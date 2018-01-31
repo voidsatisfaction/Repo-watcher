@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    container_name: repo-watcher
+    build: .
+    volumes:
+      - .:/go/src/Repo-watcher
