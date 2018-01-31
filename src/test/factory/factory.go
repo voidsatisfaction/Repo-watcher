@@ -6,7 +6,7 @@ import (
 )
 
 func NewConfig() *config.ConfigFile {
-	c := &config.Config{}
+	c := &config.ConfigFile{}
 	c.Mail.From = testUtil.MakeRandomString(20)
 	c.Mail.To = []string{testUtil.MakeRandomString(20), testUtil.MakeRandomString(20)}
 	c.Mail.Username = testUtil.MakeRandomString(10)
