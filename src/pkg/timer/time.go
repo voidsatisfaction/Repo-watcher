@@ -23,7 +23,7 @@ func GetCurrentJapanHourMin() string {
 	return hourMin
 }
 
-func IsTime(c *config.Config, t string) bool {
+func IsTime(c *config.ConfigFile, t string) bool {
 	for _, time := range c.AlarmTime {
 		if time == t {
 			return true

@@ -14,7 +14,7 @@ type BodyMaker struct {
 	Message string
 }
 
-func New(c *config.Config) *BodyMaker {
+func New(c *config.ConfigFile) *BodyMaker {
 	bm := &BodyMaker{
 		To:    c.Mail.To,
 		Repos: []string{c.Github.Repository},

@@ -15,7 +15,7 @@ type Mailer struct {
 	auth       smtp.Auth
 }
 
-func New(c *config.Config) *Mailer {
+func New(c *config.ConfigFile) *Mailer {
 	smtpServer := "smtp.gmail.com:587"
 	host := "smtp.gmail.com"
 	auth := smtp.PlainAuth("", c.Mail.Username, c.Mail.Password, host)

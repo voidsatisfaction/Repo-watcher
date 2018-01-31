@@ -5,7 +5,7 @@ import (
 	"Repo-watcher/src/test/util"
 )
 
-func NewConfig() *config.Config {
+func NewConfig() *config.ConfigFile {
 	c := &config.Config{}
 	c.Mail.From = testUtil.MakeRandomString(20)
 	c.Mail.To = []string{testUtil.MakeRandomString(20), testUtil.MakeRandomString(20)}
