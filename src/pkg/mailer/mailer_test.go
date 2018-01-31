@@ -2,7 +2,6 @@ package mailer
 
 import (
 	"Repo-watcher/src/test/factory"
-	"fmt"
 	"reflect"
 	"testing"
 )
@@ -11,7 +10,6 @@ func TestNew(t *testing.T) {
 	c := testFactory.NewConfig()
 
 	m := New(c)
-	fmt.Printf("m: %+v, c: %+v\n", *m, *c)
 	if c.Mail.From != m.From {
 		t.Errorf("two from is not same")
 		t.Errorf("Expect: %v, got: %v", c.Mail.From, m.From)
